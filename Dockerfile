@@ -1,22 +1,23 @@
-# Use a base image with Java and Maven
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml first
+# Copy Maven wrapper files first
 COPY mvnw .
 COPY .mvn .mvn
-COPY pom.xml .
 
-# Download dependencies (for caching)
+# ✅ Make the mvnw script executable
+RUN chmod +x ./mvnw
+
+# Copy the pom.xml and download dependencies (for build caching)
+COPY pom.xml .
 RUN ./mvnw dependency:go-offline -B
 
-# Copy the project source
+# Copy the rest of the project
 COPY src ./src
 
-# Build the application
+# Build the app
 RUN ./mvnw clean package -DskipTests
 
-# Run the JAR file
-CMD ["java", "-jar", "target/*.jar"]
+# Run the JAR
+CMD ["java", "-jar", "target/your-app-name.jar"]
