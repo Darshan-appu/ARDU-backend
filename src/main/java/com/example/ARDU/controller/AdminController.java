@@ -29,7 +29,7 @@ import java.util.Optional; // 🛑 Import for Optional
  */
 @RestController
 @RequestMapping("/api/admins")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://ardu-frontend.vercel.app")
 public class AdminController {
 
     @Autowired
