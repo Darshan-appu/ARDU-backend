@@ -2,14 +2,14 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-# Copy Maven wrapper files first
+# Copy Maven wrapper files
 COPY mvnw .
 COPY .mvn .mvn
 
-# ✅ Make the mvnw script executable
+# Make mvnw executable
 RUN chmod +x ./mvnw
 
-# Copy the pom.xml and download dependencies (for build caching)
+# Copy pom.xml and pre-download dependencies
 COPY pom.xml .
 RUN ./mvnw dependency:go-offline -B
 
@@ -19,5 +19,5 @@ COPY src ./src
 # Build the app
 RUN ./mvnw clean package -DskipTests
 
-# Run the JAR
-CMD ["java", "-jar", "target/your-app-name.jar"]
+# Run the app (auto-detects jar name)
+CMD ["sh", "-c", "java -jar target/*.jar"]
