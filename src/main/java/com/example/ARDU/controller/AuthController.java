@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequestMapping("/api/auth")
 // 🛑 CORE FIX: Add CrossOrigin annotation to allow requests from the frontend
 // origin
-@CrossOrigin(origins = {"https://ardu-frontend.vercel.app","http://localhost:3000"}) // Adjust as needed
+@CrossOrigin(origins = "http://localhost:3000") // Adjust as needed
 @RequiredArgsConstructor
 public class AuthController {
 
