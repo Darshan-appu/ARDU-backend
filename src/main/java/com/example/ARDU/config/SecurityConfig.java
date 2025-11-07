@@ -50,8 +50,8 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter,
                         org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    
+        return http.build();  // Make sure this is properly terminated with a semicolon
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
