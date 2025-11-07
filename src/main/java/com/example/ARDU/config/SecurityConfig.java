@@ -51,12 +51,12 @@ public class SecurityConfig {
                         org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    }
+    
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://ardu-frontend.vercel.app")); // frontend
+        configuration.setAllowedOrigins(List.of("https://ardu-frontend.vercel.app","http://localhost:3000")); // frontend
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true); // important for cookies
         configuration.setAllowedHeaders(List.of("*"));
